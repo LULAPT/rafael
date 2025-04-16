@@ -48,8 +48,8 @@
 }
   
   ::selection {
-    color: #dbbf41;
-    background: rgb(17, 17, 17);
+    color: #dbbf416c;
+    background: rgba(17, 17, 17, 0);
   }
 
 
@@ -93,7 +93,7 @@ header {
 	font-size: 26px;
 	font-weight: bold;
 	color: #ffffff;
-	margin-left: -510px;
+	margin-left: -670px;
 }
 
 .logo span{
@@ -122,7 +122,9 @@ header {
 }
 
 .nav-links a:hover {
-	color: #dbbf41;
+  color: #dbbf41;
+  text-shadow: 0 0 8px rgba(219, 191, 65, 0.6);
+  transition: all 0.3s ease;
 }
 
 .hero {
