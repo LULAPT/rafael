@@ -286,11 +286,6 @@ header {
     transition: transform 0.3s ease;
 }
 
-.feature-card:hover {
-    transform: translateY(-10px);
-    /* box-shadow: 0 10px 20px #dbbf411a; */
-}
-
 .widget-content {
     display: flex;
     padding: 20px;
@@ -777,3 +772,218 @@ footer .container {
 .faq-item.active .faq-arrow {
 	transform: rotate(180deg);
 }
+
+/* Estado inicial dos elementos antes da animação */
+.hero, .hero h1, .hero p, .input-container, 
+.showcase, .showcase img,
+.features-section, .features-column, .feature-card,
+.small-feature, .stats .stat-item,
+.prices, .prices h1, .prices .basic, .prices .VIP,
+.user-carousel, .user-carousel-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Animações para os elementos quando ficam visíveis */
+.hero.animate,
+.hero h1.animate,
+.hero p.animate,
+.input-container.animate,
+.showcase.animate,
+.showcase img.animate,
+.features-section.animate,
+.features-column.animate,
+.feature-card.animate,
+.small-feature.animate,
+.stats .stat-item.animate,
+.prices.animate,
+.prices h1.animate,
+.prices .basic.animate,
+.prices .VIP.animate,
+.user-carousel.animate,
+.user-carousel-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delays específicos para criar efeito sequencial */
+.hero h1.animate { transition-delay: 0.2s; }
+.hero p.animate { transition-delay: 0.4s; }
+.input-container.animate { transition-delay: 0.6s; }
+.showcase.animate { transition-delay: 0.2s; }
+.showcase img:first-child.animate { transition-delay: 0.4s; }
+.showcase img:nth-child(2).animate { transition-delay: 0.6s; }
+.features-section.animate { transition-delay: 0.2s; }
+.features-column.animate { transition-delay: 0.3s; }
+.features-column:nth-child(2).animate { transition-delay: 0.5s; }
+.features-column:nth-child(3).animate { transition-delay: 0.7s; }
+.feature-card.animate { transition-delay: 0.4s; }
+.prices h1.animate { transition-delay: 0.2s; }
+.prices.animate { transition-delay: 0.3s; }
+.prices .basic.animate { transition-delay: 0.5s; }
+.prices .VIP.animate { transition-delay: 0.7s; }
+.user-carousel.animate { transition-delay: 0.3s; }
+.user-carousel-item:nth-child(1).animate { transition-delay: 0.4s; }
+.user-carousel-item:nth-child(2).animate { transition-delay: 0.5s; }
+.user-carousel-item:nth-child(3).animate { transition-delay: 0.6s; }
+.user-carousel-item:nth-child(4).animate { transition-delay: 0.7s; }
+
+/* Garantindo que os hovers funcionem corretamente */
+.feature-card {
+  pointer-events: none; /* Desativa eventos de mouse durante a animação */
+}
+
+.feature-card.animate {
+  pointer-events: auto; /* Reativa eventos de mouse após a animação */
+}
+
+/* Corrigindo o hover do widget-content */
+.feature-card .widget-content {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.feature-card:hover .widget-content {
+  background-color: #1a1a1a;
+  transform: translateY(-5px);
+}
+
+/* Corrigindo o hover do music-player */
+.feature-card .music-player {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.feature-card:hover .music-player {
+  background-color: #1a1a1a;
+  transform: translateY(-5px);
+}
+
+/* Garantindo que os controles do player de música funcionem */
+.player-controls button {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.player-controls button:hover {
+  color: #ffffff;
+}
+
+.play-btn:hover {
+  background-color: #dbbf41 !important;
+}
+
+/* Suporte para usuários que preferem movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .hero, .hero h1, .hero p, .input-container, 
+  .showcase, .showcase img,
+  .features-section, .features-column, .feature-card,
+  .small-feature, .stats .stat-item,
+  .prices, .prices h1, .prices .basic, .prices .VIP,
+  .user-carousel, .user-carousel-item {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Fix for feature-card hover with animations */
+.feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+    transform: translateY(0); /* Reset any transform from animation */
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-10px);
+    /* box-shadow: 0 10px 20px rgba(219, 191, 65, 0.1); */
+  }
+  
+  /* Fix for pointer events during animation */
+  .feature-card {
+    pointer-events: auto !important; /* Override the animation pointer-events */
+  }
+  
+  /* Make sure widget content and music player don't interfere with card hover */
+  .feature-card .widget-content,
+  .feature-card .music-player {
+    transition: background-color 0.3s ease;
+  }
+  
+  .feature-card:hover .widget-content,
+  .feature-card:hover .music-player {
+    background-color: #1a1a1a;
+  }
+  
+  /* Fix for prices containers hover */
+  .prices .basic,
+  .prices .VIP {
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    will-change: transform;
+    transform: translateY(0); /* Reset any transform from animation */
+    pointer-events: auto !important;
+  }
+  
+  .prices .basic:hover,
+  .prices .VIP:hover {
+    transform: translateY(-15px) !important;
+    box-shadow: 0 5px 15px rgba(219, 191, 65, 0.1) !important;
+  }
+  
+  /* Ensure animation completion doesn't break hover */
+  .animate {
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .animate.feature-card,
+  .animate.basic,
+  .animate.VIP {
+    transform: translateY(0) !important; /* Ensure base state is reset after animation */
+  }
+
+  /* Fix for feature-card hover with animations to ensure the entire card lifts */
+.feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+    transform: translateY(0); /* Reset any transform from animation */
+    pointer-events: auto !important;
+    overflow: visible !important; /* Ensure shadows and transforms aren't cut off */
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-10px);
+    /* box-shadow: 0 10px 20px rgba(219, 191, 65, 0.1); */
+  }
+  
+  /* Remove any transformations from inner elements that could be causing issues */
+  .feature-card .widget-content,
+  .feature-card .music-player,
+  .feature-card .widget-footer,
+  .feature-card .player-controls {
+    transition: background-color 0.3s ease;
+    transform: none !important; /* Prevent inner elements from transforming independently */
+  }
+  
+  .feature-card:hover .widget-content,
+  .feature-card:hover .music-player {
+    background-color: #1a1a1a;
+  }
+  
+  /* Specifically target widget footer and player controls to ensure they move with the rest */
+  .feature-card:hover .widget-footer,
+  .feature-card:hover .player-controls {
+    background-color: #222; /* Optional: slightly darker background on hover */
+  }
+  
+  /* Additional fix for preserving child-parent relationship during transforms */
+  .feature-card {
+    backface-visibility: hidden; /* Fixes some rendering issues */
+    transform-style: preserve-3d; /* Ensures 3D transformations are applied as a group */
+  }
+  
+  /* Make sure any animations don't override these hover effects */
+  .feature-card.animate {
+    transform: translateY(0) !important; /* Base state after animation */
+  }
+  
+  .feature-card.animate:hover {
+    transform: translateY(-10px) !important; /* Hover state even after animation */
+  }
